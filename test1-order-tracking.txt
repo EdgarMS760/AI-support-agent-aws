@@ -1,0 +1,15 @@
+TEST 1 - Order Tracking
+
+Command:
+agentcore invoke '{"prompt": "Can you track order ORD-001?", "customer_id": "CUST-123", "session_id": "t1"}'
+
+Output:
+Order ORD-001 is confirmed **SHIPPED** via **UPS** with tracking number
+**TRK987654321**.
+
+**Order Details**
+- **Item**: Wireless Headphones Pro (1 unit)
+- **Total**: $89.99
+- **Estimated Delivery**: September 23, 2026
+
+You can monitor its progress using the tracking number with your carrier, UPS.

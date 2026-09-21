@@ -1,0 +1,44 @@
+Design decision.
+
+For calculate_loyalty_discount, I chose to encode the entire discount
+calculation as a self-contained Python code string executed inside
+AgentCore's Code Interpreter, rather than asking the model to reason
+through the arithmetic itself. Loyalty math has several sequential, exact
+steps - floor the redemption to the nearest 500 points, cap it at 50% of
+the order, apply the tier discount to the post-redemption subtotal, then
+compute points earned - and LLMs are known to make small arithmetic slips
+when chaining several operations. Running the logic in a sandbox
+guarantees the numbers are correct regardless of which model sits behind
+the agent. I later validated the business rules (100 points = $1, minimum
+500-point redemption) directly against the product knowledge base and
+confirmed the design matched the documented policy exactly.
+
+Challenge.
+
+The trickiest bug was in MemoryHook. retrieve_customer_context prepends
+retrieved memories onto the last user message's content, in place.
+Because save_support_interaction later re-reads that same message list to
+persist the turn, it was saving the annotated version - a wall of old
+facts plus the new message - instead of the customer's actual words. I
+diagnosed this by querying the Memory resource directly with the SDK,
+outside the agent loop, and saw that "I prefer concise responses" was
+being diluted into paragraphs of unrelated context before semantic
+extraction ran, so that specific preference never got extracted as its
+own fact. The fix was to stash the original, un-annotated query on the
+hook instance before mutating the message, and have
+save_support_interaction persist that stashed copy instead of re-parsing
+the now-polluted message list.
+
+Production consideration.
+
+During deployed testing, the model's natural-language summary of a
+discount calculation stated a tier-discount dollar amount that didn't
+match the tool's own computation, even though the sandboxed code itself
+was correct - a model paraphrasing error, not a calculation error. In
+production I would not trust the model to restate a tool's numeric output
+in prose. I'd validate calculate_loyalty_discount's JSON against a
+Pydantic schema and surface the structured fields directly to the client
+(e.g. in a UI card), using the model only to generate the surrounding
+explanation rather than to re-derive numbers - this removes an entire
+class of silent, hard-to-catch correctness bugs before they reach a
+paying customer.

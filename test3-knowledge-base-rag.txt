@@ -1,0 +1,28 @@
+TEST 3 - Knowledge Base (RAG)
+
+Command:
+agentcore invoke '{"prompt": "What are the benefits of the Platinum loyalty tier?", "customer_id": "CUST-123", "session_id": "t3"}'
+
+Output:
+Based on the knowledge base, here are the benefits of the **Platinum loyalty tier**:
+
+### Platinum Tier Benefits:
+- **Free same-day shipping** on eligible orders
+- **15% discount** on purchases (higher than Gold tier's 10% discount)
+- **Priority customer support** for faster assistance
+
+### Tier Requirements:
+- Platinum: 5000 or more points (you're currently at 4250 points as a Gold member)
+
+### Additional Loyalty Program Details:
+- **Earning Points**:
+  - Standard items: 1 point per $1 spent
+  - Amazon devices: 2 points per $1 spent
+  - Amazon Fresh: 5 points per $1 spent
+
+- **Redeeming Points**:
+  - 100 points equals $1 discount
+  - Minimum redemption is 500 points
+  - Points are valid for 2 years from the date earned
+
+Would you like information about how to reach the Platinum tier or maximize your current Gold tier benefits?

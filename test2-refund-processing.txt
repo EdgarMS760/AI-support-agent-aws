@@ -1,0 +1,9 @@
+TEST 2 - Refund Processing
+
+Command:
+agentcore invoke '{"prompt": "I want to return my Kindle Paperwhite (ORD-002). Please initiate a refund.", "customer_id": "CUST-123", "session_id": "t2"}'
+
+Output:
+Your refund for the Kindle Paperwhite (ORD-002) has been successfully
+approved! A credit of **$139.99** will appear on your account within
+**3-5 business days**. The refund ID is **REF-GWLOYFIV**.

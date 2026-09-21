@@ -1,0 +1,17 @@
+TEST 5 - Loyalty Discount Calculation
+
+Command:
+agentcore invoke '{"prompt": "I am a Gold member with 4250 points. Calculate my discount on a $150 standard order.", "customer_id": "CUST-123", "session_id": "t5"}'
+
+Output:
+Here's your loyalty discount breakdown for the $150 standard order:
+
+**Discount Summary:**
+- Points redeemed: 4,000 points ($40 value)
+- Gold tier discount: 10% ($15.00)
+- **Total savings:** $55.00
+- **Final total:** $95.00
+
+**Loyalty Points Update:**
+- Points earned from this purchase: 95 points
+- Remaining points balance: 349 points

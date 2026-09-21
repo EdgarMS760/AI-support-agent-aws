@@ -1,0 +1,13 @@
+TEST 4 - Long-Term Memory (two sessions)
+
+Session A - introduce yourself:
+agentcore invoke '{"prompt": "Hi, I am Jane. I prefer concise responses.", "customer_id": "CUST-123", "session_id": "d-sA"}'
+
+Output:
+Hello Jane! I can help with order tracking, loyalty discounts, or refunds. What would you like to do today?
+
+Session B - verify recall:
+agentcore invoke '{"prompt": "Do you remember my name and communication preference?", "customer_id": "CUST-123", "session_id": "d-sB"}'
+
+Output:
+Yes, your name is **Jane** and you prefer **concise responses**.
