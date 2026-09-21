@@ -51,14 +51,10 @@ os.environ["BYPASS_TOOL_CONSENT"] = "true"
 # ── TODO 2 — Configuration ────────────────────────────────────────────────────
 # Replace the placeholder strings with your actual AWS resource values.
 # You collected these in Part 1 of the INSTRUCTIONS.
-# Values below are redacted for this public repo (the Gateway uses the NONE
-# authorizer, so the URL alone would grant unauthenticated tool access).
-# Real values were set here during development and testing — see the test
-# logs in this repo for evidence of the working, deployed agent.
-GATEWAY_URL = "<gateway_url>"
-KB_ID       = "<kbid>"
+GATEWAY_URL = "https://gateway-customersupportgatewayquick-start-5319e1-858kly7ugf.gateway.bedrock-agentcore.us-east-1.amazonaws.com/mcp"
+KB_ID       = "YUYDFESM7O"
 REGION      = "us-east-1"
-MEMORY_ID   = "<mem_id>"
+MEMORY_ID   = "CustomerSupportMemory-H0b38T8A55"
 
 
 # ── TODO 3 — Model and Clients ────────────────────────────────────────────────
